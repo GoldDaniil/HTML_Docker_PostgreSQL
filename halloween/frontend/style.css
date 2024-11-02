@@ -1,16 +1,18 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Creepster', Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     color: white;
     background-color: #000;
+    overflow: hidden;
 }
 
 .container {
     text-align: center;
+    position: relative;
 }
 
 .black-orange {
@@ -26,6 +28,11 @@ body {
 .glow-text {
     font-size: 3rem;
     animation: glow 1.5s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px orange, 0 0 20px red, 0 0 30px purple;
+}
+
+.spooky-fade {
+    animation: spooky-fade 2s ease-in-out infinite alternate;
 }
 
 .link-button {
@@ -33,21 +40,79 @@ body {
     color: white;
     background-color: black;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     border-radius: 5px;
+    box-shadow: 0 0 5px orange, 0 0 10px purple;
 }
 
 .link-button:hover {
-    background-color: orange;
+    background-color: darkorange;
+    transform: scale(1.1);
 }
 
 @keyframes glow {
     from {
         color: orange;
-        text-shadow: 0 0 10px orange, 0 0 20px orange, 0 0 30px orange;
+        text-shadow: 0 0 10px orange, 0 0 20px red, 0 0 30px purple;
     }
     to {
         color: black;
         text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black;
+    }
+}
+
+@keyframes spooky-fade {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0.7;
+        transform: translateY(-10px);
+    }
+}
+
+.bat-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bat {
+    width: 50px;
+    height: 20px;
+    background: url('bat.png') no-repeat center/contain;
+    position: absolute;
+    top: 20%;
+    animation: fly 5s linear infinite;
+    opacity: 0.8;
+}
+
+.bat1 {
+    left: 10%;
+    animation-delay: -2s;
+}
+
+.bat2 {
+    left: 50%;
+    animation-delay: -3s;
+}
+
+.bat3 {
+    left: 80%;
+    animation-delay: -4s;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translateY(-30px) rotate(-10deg) scale(1.2);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
     }
 }
